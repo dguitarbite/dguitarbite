@@ -16,7 +16,7 @@
 !.gitconfig
 
 # Do not ignore the following folders
-!.oh-my-zsh
+!.oh-my-zsh/*
 
 # Ignore all the other files & folders
 *
