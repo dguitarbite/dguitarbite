@@ -1,9 +1,22 @@
 # Do not ignore the following files
+
+# Zsh Files
 !.zshrc
+!.zshrc.pre-oh-my-zsh  
+!.zshrc.zni  
+!.zsh-update
+
+# Vim Files
 !.vimrc
-!.init.sh
+
+# Custom Init Script to initialize various repos
+!.init
+
+# Git Files
 !.gitconfig
-!init.sh
+
+# Do not ignore the following folders
+!.oh-my-zsh
 
 # Ignore all the other files & folders
 *
