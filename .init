@@ -1,9 +1,10 @@
 #!/bin/bash
+
 # Clone core and incubated projects under OpenStack
 
-for i in nova swift glance keystone horizon neutron cinder celiometer heat ironic openstack-manuals; do
+for i in nova swift glance keystone horizon neutron cinder ceilometer heat ironic openstack-manuals; do
 
-    git clone https://github.com/openstack/$i ./Repos/OpenStack/Core/$i
+    git clone https://github.com/openstack/"$i".git ./Repos/OpenStack/Core/$i
 
 done
 
@@ -11,6 +12,43 @@ done
 
 for i in trove devstack nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
 
-    git clone https://github.com/openstack/$i ./Repos/OpenStack/Other/$i
+    git clone https://github.com/openstack/"$i".git ./Repos/OpenStack/Other/$i
 
 done
+
+# Install/Clone Oh My Zsh by Robby Russel
+wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+
+# Install Pathogen for better VIM - https://github.com/tpope/vim-pathogen
+mkdir -p ~/.vim/autoload ~/.vim/bundle;
+curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+
+# Install Puppet Modules for Vim - https://github.com/rodjek/vim-puppet
+git submodule add -f git://github.com/rodjek/vim-puppet.git ~/.vim/bundle/puppet
+
+# Install Syntastic https://github.com/scrooloose/syntastic
+git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+
+# Install Fugitive https://github.com/tpope/vim-fugitive
+git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/fugitive
+
+# Install Tabular - https://github.com/godlygeek/tabular
+git clone https://github.com/godlygeek/tabular.git ~/.vim/bundle/tabular
+
+# Install Snippets - https://github.com/garbas/vim-snipmate
+git clone https://github.com/tomtom/tlib_vim.git ~/.vim/bundle/tlib_vim
+git clone https://github.com/MarcWeber/vim-addon-mw-utils.git ~/.vim/bundle/vim-addon-mw-utils
+git clone https://github.com/garbas/vim-snipmate.git ~/.vim/bundle/vim-snipmate
+git clone https://github.com/honza/vim-snippets.git ~/.vim/bundle/vim-snippets
+
+# Install PowerLine - https://github.com/Lokaltog/powerline
+git clone https://github.com/Lokaltog/powerline.git ~/.vim/bundle/powerline
+
+# Install CTRLP - https://github.com/kien/ctrlp.vim
+git clone https://github.com/kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
+
+# Install Python Mode https://github.com/klen/python-modehttps://github.com/klen/python-mode
+git clone https://github.com/klen/python-mode.git ~/.vim/bundle/python-mode
+
+# Install Color Plugin Solorized - https://github.com/altercation/vim-colors-solarized
+git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/colors-solarized
