@@ -2,12 +2,10 @@
 !.zshrc
 !.vimrc
 !.init.sh
+!.gitconfig
 
 # Do not ignore the following folders
 !Repos/*
-
-# Ofcourse do not forget the git config file
-!.gitconfig
 
 # Do not ignore the following folders
 !OpenStack/*
