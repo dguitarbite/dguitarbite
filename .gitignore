@@ -1,5 +1,9 @@
-*
-
+# Do not ignore the following files
 !.zshrc
 !.vimrc
-!OpenStack/*
+
+# Do not ignore the following folders
+!Repos/*
+
+# Ignore all the other folders
+*
