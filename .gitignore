@@ -3,12 +3,7 @@
 !.vimrc
 !.init.sh
 !.gitconfig
+!init.sh
 
-# Do not ignore the following folders
-!Repos/*
-
-# Do not ignore the following folders
-!OpenStack/*
-
-# Ignore all the other folders
+# Ignore all the other files & folders
 *
