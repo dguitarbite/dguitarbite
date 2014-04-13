@@ -1,7 +1,7 @@
 # Do not ignore the following files
 !.zshrc
 !.vimrc
-
+!.init.sh
 # Do not ignore the following folders
 !Repos/*
 
