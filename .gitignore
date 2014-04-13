@@ -2,8 +2,12 @@
 !.zshrc
 !.vimrc
 !.init.sh
+
 # Do not ignore the following folders
 !Repos/*
+
+# Ofcourse do not forget the git config file
+!.gitconfig
 
 # Ignore all the other folders
 *
