@@ -1,0 +1,16 @@
+#!/bin/bash
+# Clone core and incubated projects under OpenStack
+
+for i in nova swift glance keystone horizon neutron cinder celiometer heat ironic openstack-manuals; do
+
+    git clone https://github.com/openstack/$i ./Repos/OpenStack/Core/$i
+
+done
+
+# Clone Tools/Libraries under OpenStack 
+
+for i in trove devstack nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
+
+    git clone https://github.com/openstack/$i ./Repos/OpenStack/Other/$i
+
+done

@@ -1,3 +1,6 @@
+# Ignore all files & folders
+*
+
 # Do not ignore the following files
 
 # Zsh Files
@@ -17,6 +20,3 @@
 
 # Do not ignore the following folders
 !.oh-my-zsh/*
-
-# Ignore all the other files & folders
-*
