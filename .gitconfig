@@ -15,3 +15,5 @@
 	helper = cache --timeout=3600
 [gitreview]
 	username = dguitarbite
+[push]
+	default = matching

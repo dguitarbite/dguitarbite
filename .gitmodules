@@ -1,0 +1,3 @@
+[submodule "/home/dguitarbite/.vim/bundle/puppet"]
+	path = /home/dguitarbite/.vim/bundle/puppet
+	url = git://github.com/rodjek/vim-puppet.git

@@ -10,7 +10,7 @@ done
 
 # Clone Tools/Libraries under OpenStack 
 
-for i in trove devstack nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
+for i in trove nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
 
     git clone https://github.com/openstack/"$i".git ./Repos/OpenStack/Other/$i
 
@@ -49,6 +49,3 @@ git clone https://github.com/kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
 
 # Install Python Mode https://github.com/klen/python-modehttps://github.com/klen/python-mode
 git clone https://github.com/klen/python-mode.git ~/.vim/bundle/python-mode
-
-# Install Color Plugin Solorized - https://github.com/altercation/vim-colors-solarized
-git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/colors-solarized
