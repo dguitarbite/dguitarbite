@@ -5,9 +5,6 @@
 
 # Zsh Files
 !.zshrc
-!.zshrc.pre-oh-my-zsh  
-!.zshrc.zni  
-!.zsh-update
 
 # Vim Files
 !.vimrc
@@ -19,4 +16,3 @@
 !.gitconfig
 
 # Do not ignore the following folders
-!.oh-my-zsh/*
