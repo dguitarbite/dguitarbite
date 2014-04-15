@@ -1,5 +1,5 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -11,44 +11,41 @@ ZSH_THEME="robbyrussell"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Uncomment the following line to use case-sensitive completion.
+# Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
+# Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
+# Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
+# Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
+# Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to disable command auto-correction.
+# Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Uncomment following line if you want to  shown in the command execution time stamp 
+# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
+# yyyy-mm-dd
+HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(archlinux autopep8 cp debian coffee chruby colored-man colorize common-aliases cp django gem git git-extras github gitignore go golang grails history pep8 perl pip pyenv pylint python rsync repo ruby screen ssh-agent sudo terminitor terminalapp vagrant xcode z yum )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -57,18 +54,46 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# # Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nano'
+ fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+ export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+ export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Aliases ===== Custom Variables
+
+# CD Shit
+alias .='cd'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+
+RockaFella='/mnt/RockaFella'
+Work='echo "mnt/RockaFella/Work'
+VirtualEnv='mnt/Work/Dev_Env/VirtualEnv'
+
+# Hosts -- Servers
+
+gloopy='gloopy.int.aptira.in'
+controller='controller.int.aptira.in'
+compute1='compute1.int.aptira.in'
+
+# Maven
+alias mvncgs='echo "running:: maven clean generate-sources";mvn clean generate-sources'
+
+# Git shit
+alias commit='git commit -a'
+alias review='git review' # Gerrit
+alias clone='git clone'
+alias amend='git commit -a --amend'
+alias pip2.7-upgrade='pip2.7 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip2.7 install -U'
+alias pip-upgrade='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'

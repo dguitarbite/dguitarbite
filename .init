@@ -16,6 +16,11 @@ for i in trove nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.te
 
 done
 
+# Other repositories
+
+# LibVirt
+git clone git://libvirt.org/libvirt.git ./Repos/LibVirt/libvirt
+
 # Install/Clone Oh My Zsh by Robby Russel
 wget --no-check-certificate http://install.ohmyz.sh -O - | sh
 

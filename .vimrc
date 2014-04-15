@@ -55,10 +55,29 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Easier moving between tabs map <Leader>N <esc>:tabprevious<CR>
+map <Leader>M <esc>:tabnext<CR>
 
-" Easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
+
+" Open NERDTree
+" <todo>
+
+" Minibuf shortcut mappings
+nnoremap <Leader>m <esc>:bp<CR>
+nnoremap <Leader>n <esc>:bn<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+" It's useful to show the buffer number in the status line. I use Minibuf
+" instead.
+" set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 
 " Map sort function to a key
@@ -124,7 +143,7 @@ set ignorecase
 set smartcase
 
 
-" Disable stupid backup and swap files
+" Disable backup and swap files
 set nobackup
 set nowritebackup
 set noswapfile
@@ -142,16 +161,16 @@ execute pathogen#infect()
 " Settings for vim-powerline
 " cd ~/.vim/bundle
 " git clone git://github.com/Lokaltog/vim-powerline.git
-"" set laststatus=2
+set laststatus=2
 
 
 " Settings for ctrlp
 " cd ~/.vim/bundle
 " git clone https://github.com/kien/ctrlp.vim.git
-"" let g:ctrlp_max_height = 30
-"" set wildignore+=*.pyc
-"" set wildignore+=*_build/*
-"" set wildignore+=*/coverage/*
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
 
 
 " Settings for python-mode
@@ -159,46 +178,46 @@ execute pathogen#infect()
 " and uncomment the part about jedi-vim instead
 " cd ~/.vim/bundle
 " git clone https://github.com/klen/python-mode
-"" map <Leader>g :call RopeGotoDefinition()<CR>
-"" let ropevim_enable_shortcuts = 1
-"" let g:pymode_rope_goto_def_newwin = "vnew"
-"" let g:pymode_rope_extended_complete = 1
-"" let g:pymode_breakpoint = 0
-"" let g:pymode_syntax = 1
-"" let g:pymode_syntax_builtin_objs = 0
-"" let g:pymode_syntax_builtin_funcs = 0
-"" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+map <Leader>g :call RopeGotoDefinition()<CR>
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_goto_def_newwin = "vnew"
+let g:pymode_rope_extended_complete = 1
+let g:pymode_breakpoint = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_builtin_objs = 0
+let g:pymode_syntax_builtin_funcs = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
-" let g:jedi#related_names_command = "<leader>z"
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#popup_select_first = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:jedi#related_names_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-"" set completeopt=longest,menuone
-"" function! OmniPopup(action)
-""     if pumvisible()
-""         if a:action == 'j'
-""             return "\<C-N>"
-""         elseif a:action == 'k'
-""             return "\<C-P>"
-""         endif
-""     endif
-""     return a:action
-"" endfunction
+set completeopt=longest,menuone
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<C-N>"
+        elseif a:action == 'k'
+            return "\<C-P>"
+        endif
+    endif
+    return a:action
+endfunction
 
-"" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-"" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 
 " Python folding
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-"" set nofoldenable
+set nofoldenable
 
 
 "=========================================================================
