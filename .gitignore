@@ -1,6 +1,5 @@
 # Ignore all files & folders
-*
-.vim
+!*vim*
 
 # Do not ignore the following files
 

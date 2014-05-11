@@ -8,7 +8,7 @@ for i in nova swift glance keystone horizon neutron cinder ceilometer heat ironi
 
 done
 
-# Clone Tools/Libraries under OpenStack 
+# Clone Tools/Libraries under OpenStack
 
 for i in trove nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
 
