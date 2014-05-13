@@ -48,6 +48,11 @@ inoremap <C-Z> <C-O>:update<CR>
 noremap <Leader>e :quit<CR>  " Quit current window
 noremap <Leader>E :qa!<CR>   " Quit all windows
 
+" Stop using arrow keys, learn VIM better ... lot better!
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Bind Ctrl+<movement> keys to move around the windows
 map <c-j> <c-w>j
@@ -55,7 +60,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Easier moving between tabs map <Leader>N <esc>:tabprevious<CR>
+" Easier moving between tabs
+map <Leader>N <esc>:tabprevious<CR>
 map <Leader>M <esc>:tabnext<CR>
 
 
@@ -129,11 +135,12 @@ set undolevels=700
 
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
 set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set shiftround
+
 
 
 " Make search case insensitive
@@ -186,7 +193,7 @@ let g:pymode_breakpoint = 0
 let g:pymode_syntax = 1
 let g:pymode_syntax_builtin_objs = 0
 let g:pymode_syntax_builtin_funcs = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
@@ -194,11 +201,16 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:jedi#related_names_command = "<leader>z"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-set completeopt=longest,menuone
+" set completeopt=longest,menuone,preview
+
+" Experimental!
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+
 function! OmniPopup(action)
     if pumvisible()
         if a:action == 'j'
