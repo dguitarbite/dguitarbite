@@ -76,24 +76,29 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-
-RockaFella='/mnt/RockaFella'
-Work='echo "mnt/RockaFella/Work'
-VirtualEnv='mnt/Work/Dev_Env/VirtualEnv'
-
-# Hosts -- Servers
-
-gloopy='gloopy.int.aptira.in'
-controller='controller.int.aptira.in'
-compute1='compute1.int.aptira.in'
-
 # Maven
 alias mvncgs='echo "running:: maven clean generate-sources";mvn clean generate-sources'
 
 # Git shit
-alias commit='git commit -a'
-alias review='git review' # Gerrit
-alias clone='git clone'
-alias amend='git commit -a --amend'
+alias gcommit='git commit -a'
+alias greview='git review' # Gerrit
+alias gclone='git clone'
+alias gamend='git commit -a --amend'
+alias gpullom='git pull origin master'
+alias gcheckout='git checkout'
+alias gcheckoutb='git checkout -b'
+
+# Pip and Python stuff
 alias pip2.7-upgrade='pip2.7 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip2.7 install -U'
 alias pip-upgrade='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'
+
+# OpenStack Repo Paths
+alias rneutron="/home/dguitarbite/Repos/OpenStack/Core/ceilometer"
+alias rcinder="/home/dguitarbite/Repos/OpenStack/Core/cinder"
+alias rglance="/home/dguitarbite/Repos/OpenStack/Core/glance"
+alias rheat="/home/dguitarbite/Repos/OpenStack/Core/heat"
+alias rhorizon="/home/dguitarbite/Repos/OpenStack/Core/horizon"
+alias rkeystone="/home/dguitarbite/Repos/OpenStack/Core/keystone"
+alias rnova="/home/dguitarbite/Repos/OpenStack/Core/nova"
+alias ropenstack-manuals="/home/dguitarbite/Repos/OpenStack/Core/openstack-manuals"
+alias rswift="/home/dguitarbite/Repos/OpenStack/Core/swift"
