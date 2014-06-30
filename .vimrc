@@ -27,6 +27,8 @@ set clipboard=unnamed
 " Mouse and backspace
 set mouse=a
 
+" Spellings (I do a lot of spelling mistakes)
+nmap <silent> <leader>s :set spell!<CR>
 
 " Rebind <Leader> key
 let mapleader = ","
