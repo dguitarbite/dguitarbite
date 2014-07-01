@@ -2,6 +2,8 @@
 
 # Clone core and incubated projects under OpenStack
 
+# Use git.openstack.org instead of github!
+
 for i in nova swift glance keystone horizon neutron cinder ceilometer heat ironic openstack-manuals; do
 
     git clone https://github.com/openstack/"$i".git ./Repos/OpenStack/Core/$i
@@ -13,6 +15,12 @@ done
 for i in trove nova-specs taskflow tempest oslo-incubator oslo.messaging oslo.test oslo.config oslo.version oslosphinx oslo.vmware openstack-doc-tools stevedore oslo.rootwrap; do
 
     git clone https://github.com/openstack/"$i".git ./Repos/OpenStack/Other/$i
+
+done
+
+for i in oslo-incubator oslo-specs oslo.config oslo.db oslo.i18n oslo.messaging oslo.rootwrap oslo.version oslo.vmware oslosphinx oslotest; do
+
+    git clone git://git.openstack.org/openstack/$i ./Repos/OpenStack/Libs/$i
 
 done
 
