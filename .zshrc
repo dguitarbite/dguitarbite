@@ -102,3 +102,5 @@ alias rkeystone="/home/dguitarbite/Repos/OpenStack/Core/keystone"
 alias rnova="/home/dguitarbite/Repos/OpenStack/Core/nova"
 alias ropenstack-manuals="/home/dguitarbite/Repos/OpenStack/Core/openstack-manuals"
 alias rswift="/home/dguitarbite/Repos/OpenStack/Core/swift"
+alias rtrainingmanuals="/home/dguitarbite/Repos/OpenStack/Core/training-guides"
+# Jio Stuff

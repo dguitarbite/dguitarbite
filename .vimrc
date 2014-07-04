@@ -1,4 +1,5 @@
 " My .vimrc -- dguitarbite (dguitarbite@gmail.com)
+" github.com/dguitarbite/dguitarbite
 
 " ============================================
 " Note to myself:
@@ -14,21 +15,49 @@ autocmd! bufwritepost .vimrc source %
 set background=dark
 
 
+" detect encoding
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+
 " Configure CloseTag for XML/HTML only
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 
 
-" Better copy & paste use F5
+" Set indents,tabs as per languages
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
+
+" Keybindings for plugin toggle
+nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F5>
+nmap <F6> :TagbarToggle<cr>
+nmap <F7> :NERDTreeToggle<cr>
+nmap <F8> :GundoToggle<cr>
+nmap <F9> :IndentGuidesToggle<cr>
+nmap <D-/> :
+nnoremap <leader>a :Ack
+nnoremap <leader>v V`]
+
 set clipboard=unnamed
 
+" Save in sudo mode
+" w!! to sudo & write a file
+cmap w!! %!sudo tee >/dev/null %
 
 " Mouse and backspace
 set mouse=a
 
+
 " Spellings (I do a lot of spelling mistakes)
-nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>p :set spell<CR>
+nmap <silent> <leader>P :set spell!<CR>
+
 
 " Rebind <Leader> key
 let mapleader = ","
@@ -67,8 +96,33 @@ map <Leader>N <esc>:tabprevious<CR>
 map <Leader>M <esc>:tabnext<CR>
 
 
-" Open NERDTree
-" <todo>
+" easy-motion
+let g:EasyMotion_leader_key = '<Leader>'
+
+" Tagbar
+let g:tagbar_left=1
+let g:tagbar_width=30
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+
+" NERDTree
+let NERDChristmasTree=0
+let NERDTreeWinSize=30
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+" let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\~$']
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos = "right"
+
+" nerdcommenter
+let NERDSpaceDelims=1
+" nmap <D-/> :NERDComToggleComment<cr>
+let NERDCompactSexyComs=1
+
+" ZenCoding
+let g:user_emmet_expandabbr_key='<C-j>'
+
 
 " Minibuf shortcut mappings
 nnoremap <Leader>m <esc>:bp<CR>
@@ -110,10 +164,12 @@ set t_Co=256
 color wombat256mod
 
 
-" Enable syntax highlighting
+" Enable filetype dectection and ft specific plugin/indent
 " You need to reload this file for the change to apply
 filetype off
 filetype plugin indent on
+
+" Enable syntax highlighting
 syntax on
 
 
@@ -134,7 +190,8 @@ nmap Q gqap
 " Useful settings
 set history=700
 set undolevels=700
-
+set showmatch                       " show matching bracket (briefly jump)
+set matchpairs+=<:>                 " For HTML
 
 " Real programmers don't use TABs but spaces
 set expandtab
@@ -160,6 +217,7 @@ set noswapfile
 
 " Setup pathogen to manage your plugins
 execute pathogen#infect()
+call pathogen#helptags()
 
 
 " ============================================================================
@@ -208,10 +266,38 @@ let g:jedi#popup_select_first = 0
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
 " set completeopt=longest,menuone,preview
+" NeoComplCache
+let g:neocomplcache_enable_at_startup=1
+let g:neoComplcache_disableautocomplete=1
+"let g:neocomplcache_enable_underbar_completion = 1
+"let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+set completeopt-=preview
 
-" Experimental!
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
+imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
+imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
+smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+
+let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
+
+" SuperTab
+" let g:SuperTabDefultCompletionType='context'
+let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+let g:SuperTabRetainCompletionType=2
 
 function! OmniPopup(action)
     if pumvisible()
@@ -231,7 +317,7 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " Python folding
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+set nofoldenable                           " disable folding
 
 
 "=========================================================================
