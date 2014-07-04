@@ -1,41 +1,16 @@
 #!/usr/bin/env bash
-# Sample file taken from https://github.com/sontek/dotfiles
-# Warning Not yet ready.
-function link_file {
-    source="${PWD}/$1"
-    target="${HOME}/${1/_/.}"
-    if [ -L "${target}" ]; then
-        unlink $target
-    fi
 
-    if [ -e "${target}" ] && [ ! -L "${target}" ]; then
-        mv $target $target.df.bak
-    fi
+export base_dir="${PWD}"
+export target="${HOME}"
 
-    ln -sf ${source} ${target}
-}
+mkdir ${target}/Repositories ${target}/Repositories/Rev \
+    ${target}/Repositories/Dev
 
-function unlink_file {
-    source="${PWD}/$1"
-    target="${HOME}/${1/_/.}"
+cp -arf ${base_dir}/Shell/.vim ${target}/
+cp -arf ${base_dir}/Shell/.zshrc ${target}/
+cp -arf ${base_dir}/Shell/.vimrc ${target}/
+cp -arf ${base_dir}/Shell/.gitconfig ${target}/
 
-    if [ -e "${target}.df.bak" ] && [ -L "${target}" ]; then
-        unlink ${target}
-        mv $target.df.bak $target
-    fi
-}
+bash $base_dir/install/init
 
-if [ "$1" = "restore" ]; then
-    for i in _*
-    do
-        echo "Lazy Bastard do it yourselves!"
-        #unlink_file $i
-    done
-    exit
-else
-    for i in _*
-    do
-        echo "Lazy Bastard do it yourselves!"
-        #link_file $i
-    done
-fi
+cp -arf ${target}/Repositories/Dev/* ${target}/Repositories/Rev/
