@@ -92,12 +92,52 @@ alias pip2.7-upgrade='pip2.7 freeze --local | grep -v '^\-e' | cut -d = -f 1  | 
 alias pip-upgrade='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'
 
 # OpenStack Repo Paths
+alias dBare_metal=$HOME/Repositories/Dev/OpenStack/Bare_metal
+alias rBare_metal=$HOME/Repositories/Rev/OpenStack/Bare_metal
+alias dCompute=$HOME/Repositories/Dev/OpenStack/Compute
+alias rCompute=$HOME/Repositories/Rev/OpenStack/Compute
+alias dData_processing_service=$HOME/Repositories/Dev/OpenStack/Data_processing_service
+alias rData_processing_service=$HOME/Repositories/Rev/OpenStack/Data_processing_service
+alias dDevstack=$HOME/Repositories/Dev/OpenStack/Devstack
+alias rDevstack=$HOME/Repositories/Rev/OpenStack/Devstack
+alias dImage_Service=$HOME/Repositories/Dev/OpenStack/Image_Service
+alias rImage_Service=$HOME/Repositories/Rev/OpenStack/Image_Service
+alias dNetworking=$HOME/Repositories/Dev/OpenStack/Networking
+alias rNetworking=$HOME/Repositories/Rev/OpenStack/Networking
+alias dQuality_Assurance=$HOME/Repositories/Dev/OpenStack/Quality_Assurance
+alias rQuality_Assurance=$HOME/Repositories/Rev/OpenStack/Quality_Assurance
+alias dTelemetry=$HOME/Repositories/Dev/OpenStack/Telemetry
+alias rTelemetry=$HOME/Repositories/Rev/OpenStack/Telemetry
+alias dBlock_Storage=$HOME/Repositories/Dev/OpenStack/Block_Storage
+alias rBlock_Storage=$HOME/Repositories/Rev/OpenStack/Block_Storage
+alias dDNS_Services=$HOME/Repositories/Dev/OpenStack/DNS_Services
+alias rDNS_Services=$HOME/Repositories/Rev/OpenStack/DNS_Services
+alias dDatabase_Service=$HOME/Repositories/Dev/OpenStack/Database_Service
+alias rDatabase_Service=$HOME/Repositories/Rev/OpenStack/Database_Service
+alias dDocumentation=$HOME/Repositories/Dev/OpenStack/Documentation
+alias rDocumentation=$HOME/Repositories/Rev/OpenStack/Documentation
+alias dInfrastructure=$HOME/Repositories/Dev/OpenStack/Infrastructure
+alias rInfrastructure=$HOME/Repositories/Rev/OpenStack/Infrastructure
+alias dObject_Storage=$HOME/Repositories/Dev/OpenStack/Object_Storage
+alias rObject_Storage=$HOME/Repositories/Rev/OpenStack/Object_Storage
+alias dQueue_service=$HOME/Repositories/Dev/OpenStack/Queue_service
+alias rQueue_service=$HOME/Repositories/Rev/OpenStack/Queue_service
+alias dCommon_Libraries=$HOME/Repositories/Dev/OpenStack/Common_Libraries
+alias rCommon_Libraries=$HOME/Repositories/Rev/OpenStack/Common_Libraries
+alias dDashboard=$HOME/Repositories/Dev/OpenStack/Dashboard
+alias rDashboard=$HOME/Repositories/Rev/OpenStack/Dashboard
+alias dDeployment=$HOME/Repositories/Dev/OpenStack/Deployment
+alias rDeployment=$HOME/Repositories/Rev/OpenStack/Deployment
+alias dIdentity=$HOME/Repositories/Dev/OpenStack/Identity
+alias rIdentity=$HOME/Repositories/Rev/OpenStack/Identity
+alias dKey_management_service=$HOME/Repositories/Dev/OpenStack/Key_management_service
+alias rKey_management_service=$HOME/Repositories/Rev/OpenStack/Key_management_service
+alias dOrchestration=$HOME/Repositories/Dev/OpenStack/Orchestration
+alias rOrchestration=$HOME/Repositories/Rev/OpenStack/Orchestration
+alias dRelease_cycle_management=$HOME/Repositories/Dev/OpenStack/Release_cycle_management
+alias rRelease_cycle_management=$HOME/Repositories/Rev/OpenStack/Release_cycle_management
 
-for i in Bare_metal Compute Data_processing_service Devstack Image_Service \
-        Networking Quality_Assurance Telemetry Block_Storage DNS_Services \
-        Database_Service Documentation  Infrastructure Object_Storage \
-        Queue_service Common_Libraries Dashboard Deployment Identity \
-        Key_management_service Orchestration Release_cycle_management
-do
-    /home/dguitarbite/Repositories/Dev/OpenStack/$(i)
-done
+alias rtraining-guides=$HOME/Repositories/Rev/OpenStack/Documentation/training-guides
+alias dtraining-guides=$HOME/Repositories/Dev/OpenStack/Documentation/training-guides
+alias ropenstack-manuals=$HOME/Repositories/Rev/OpenStack/Documentation/openstack-manuals
+alias dopenstack-manuals=$HOME/Repositories/Dev/OpenStack/Documentation/openstack-manuals

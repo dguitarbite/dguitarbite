@@ -10,7 +10,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " Required for Vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=.vim/bundle/vundle
+set rtp+=$HOME/.vim/bundle/vundle
 call vundle#begin()         " Start Vundle Plugin Configuration
 
     " To add plugins, add the entries inside the vundle#begin/end block.

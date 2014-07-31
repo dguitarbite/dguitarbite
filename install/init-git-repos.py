@@ -10,40 +10,57 @@
 # submodules and apply them as required.
 
 import subprocess
-import yaml
 import sys
+import urllib.request
+import yaml
 
 home_dir = sys.argv[1]
 
-other_repositories = [ \
-        'https://github.com/gregmalcolm/python_koans.git',
-        ]
+other_repositories = [
+    'https://github.com/gregmalcolm/python_koans.git']
 
 
-def init_git_repo( repo_location, repo_remote_url, remote_name):
+def init_git_repo(repo_location, repo_remote_url, remote_name):
     '''Initializes git repository and adds remote URLs.'''
 
-    git_init_cmd = 'git init ' + repo_location
-    print('Initializing git repository: ' + git_init_cmd)
-    init_repo = subprocess.Popen(git_init_cmd.split(), \
-            stdout=subprocess.PIPE)
-    init_output = init_repo.communicate()[0]
+    try:
+        git_init_cmd = 'git init ' + repo_location
+        print('Initializing git repository: ' + git_init_cmd)
+        init_repo = subprocess.Popen(git_init_cmd.split(),
+                                     stdout=subprocess.PIPE)
+        init_output = init_repo.communicate()[0]
+        print(init_output)
 
-    git_remote_cmd = 'git remote add ' + remote_name + ' ' + repo_remote_url
-    print('Adding git remote: ' + git_remote_cmd)
-    add_remote = subprocess.Popen(git_remote_cmd.split(), \
-            cwd=repo_location, stdout=subprocess.PIPE)
-    remote_output = add_remote.communicate()[0]
+    except Exception:
+        print("Error!")
 
-    git_fetch = 'git fetch ' + remote_name
-    print('Update the git repositories')
-    fetch_repo = subprocess.Popen(git_fetch.split(), \
-            cwf=repo_location, stdout=subprocess.PIPE)
-    remote_output = add_remote.communicate()[0]
+    try:
+        git_remote_cmd = 'git remote add ' + remote_name + ' ' + \
+            repo_remote_url
+        print('Adding git remote: ' + git_remote_cmd)
+        add_remote = subprocess.Popen(git_remote_cmd.split(),
+                                      cwd=repo_location,
+                                      stdout=subprocess.PIPE)
+        remote_output = add_remote.communicate()[0]
+
+    except Exception:
+        print("Error!")
+
+    try:
+        git_fetch = 'git fetch ' + remote_name
+        print('Update the git repositories')
+        fetch_repo = subprocess.Popen(git_fetch.split(),
+                                      cwf=repo_location,
+                                      stdout=subprocess.PIPE)
+        remote_output = fetch_repo.communicate()[0]
+        print(remote_output)
+
+    except Exception:
+        print("Error!")
 
 
 def setup_openstack_repositories():
-    '''Clone and Setup OpenStack Repositories'''
+    '''Clone and Setup OpenStack Repositories.'''
 
     repo_info = open('programs.yaml', 'r')
     repo_info = yaml.load(repo_info)
@@ -73,54 +90,65 @@ def setup_openstack_repositories():
             '''
 
             repo_location = home_dir + '/Repositories/Dev/OpenStack/' + \
-                    project.replace(' ', '_') + \
-                    repo_name.replace('/openstack/', '/')
+                project.replace(' ', '_') + \
+                repo_name.replace('/openstack/', '/')
             remote_name = 'g.o.o'
             init_git_repo(repo_location, repo_url, remote_name)
 
 
-def setup_opensuse_repositories():
-    '''
-    Set up openSUSE related repositories.
+def setup_openSUSE_repositories():
+    '''Set up openSUSE related repositories.
     URL: https://github.com/openSUSE
     '''
 
-    pass
+    openSUSE_repo_url = 'https://api.github.com/orgs/openSUSE/repos'
+    f = urllib.request.urlopen(openSUSE_repo_url)
+    print(f.read())
 
 
 def setup_SUSE_repositories():
-    '''
-    Set up SUSE repositories.
+    '''Set up SUSE repositories.
     URL: https://github.com/SUSE
     '''
 
-    pass
+    SUSE_repo_url = 'https://api.github.com/orgs/SUSE/repos'
+    SUSE_repo_info = urllib.request.urlopen(SUSE_repo_url)
+    SUSE_repo_info = SUSE_repo_info.read()
+
 
 
 def setup_susestudio_repositories():
-    '''
-    Set up susestudio repositories.
+    '''Set up susestudio repositories.
     URL: https://github.com/susestudio
     '''
 
-    pass
+    susestudio_repo_url = 'https://api.github.com/orgs/susestudio/repos'
+    f = urllib.request.urlopen(susestudio_repo_url)
+    print(f.read())
 
 
 def setup_SUSE_Cloud_repositories():
-    '''
-    Setup SUSE-Cloud repositories.
+    '''Setup SUSE-Cloud repositories.
     URL: https://github.com/SUSE-Cloud
     '''
 
-    pass
+    SUSE_Cloud_repo_url = 'https://api.github.com/orgs/SUSE-Cloud/repos'
+    f = urllib.request.urlopen(SUSE_Cloud_repo_url)
+    print(f.read())
 
 
 def setup_openSUSE_Team():
-    '''
-    Setup openSUSE-Team repositories.
+    '''Setup openSUSE-Team repositories.
     URL: https://github.com/openSUSE-Team
     '''
 
-    pass
+    openSUSE_team_repo_url = 'https://api.github.com/orgs/openSUSE/repos'
+    f = urllib.request.urlopen(openSUSE_team_repo_url)
+    print(f.read())
 
 setup_openstack_repositories()
+# setup_openSUSE_Team()
+# setup_SUSE_repositories()
+# setup_susestudio_repositories()
+# setup_SUSE_Cloud_repositories()
+# setup_openSUSE_Team()
