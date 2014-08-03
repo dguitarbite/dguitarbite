@@ -125,13 +125,13 @@ autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bu
 
 
 " Set indents,tabs as per languages
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
 
 " Keybindings for plugin toggle
@@ -155,13 +155,13 @@ cmap w!! %!sudo tee >/dev/null %
 set mouse=a
 
 
+" Rebind <Leader> key
+let mapleader = ","
+
+
 " Spellings (I do a lot of spelling mistakes)
 nmap <silent> <leader>p :set spell<CR>
 nmap <silent> <leader>P :set spell!<CR>
-
-
-" Rebind <Leader> key
-let mapleader = ","
 
 
 " Removes highlight of your last search
@@ -242,6 +242,21 @@ nnoremap <Leader>0 :10b<CR>
 " instead.
 " set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
+" Status Line!
+set statusline+=%n:             " - buffer number, followed by a colon
+set statusline+=%<%f            " - relative filename, truncated from the left
+set statusline+=\               " - a space
+set statusline+=%h              " - [Help] if this is a help buffer
+set statusline+=%m              " - [+] if modified, [-] if not modifiable
+set statusline+=%r              " - [RO] if readonly
+set statusline+=\               " - a space
+set statusline+=\               " - a space
+set statusline+=%=              " - right-align the rest
+set statusline+=%-10.(%l,%c%V%) " - line,column[-virtual column]
+set statusline+=\               " - a space
+set statusline+=%4L             " - total number of lines in buffer
+set statusline+=\               " - a space
+set statusline+=%P              " - position in buffer as percentage
 
 " Map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -279,7 +294,7 @@ set number  " show line numbers
 set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
+let &colorcolumn="80,".join(range(120,121),",").join(range(123,999),",")
 highlight ColorColumn ctermbg=233
 
 
@@ -314,111 +329,6 @@ set smartcase
 set nobackup
 set nowritebackup
 set noswapfile
-
-
-" Setup pathogen to manage your plugins
-" execute pathogen#infect() " Time for Vundle :|
-" call pathogen#helptags()
-
-
-" ============================================================================
-"" Python IDE Setup
-" ============================================================================
-
-
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
-
-
-" Settings for ctrlp
-" cd ~/.vim/bundle
-" git clone https://github.com/kien/ctrlp.vim.git
-let g:ctrlp_max_height = 30
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
-
-
-" Settings for python-mode
-" Note: I'm no longer using this. Leave this commented out
-" and uncomment the part about jedi-vim instead
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-" Settings for jedi-vim
-" cd ~/.vim/bundle
-" git clone git://github.com/davidhalter/jedi-vim.git
-let g:jedi#related_names_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-" Better navigating through omnicomplete option list
-" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-" set completeopt=longest,menuone,preview
-" NeoComplCache
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_underbar_completion = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-set completeopt-=preview
-
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
-
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-
-let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
-
-" SuperTab
-" let g:SuperTabDefultCompletionType='context'
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-let g:SuperTabRetainCompletionType=2
-
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
-
-
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable                           " disable folding
 
 
 "=========================================================================
@@ -459,3 +369,116 @@ if !exists("no_plugin_maps") && !exists("no_toggle_mouse_maps")
         inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
     endif
 endif
+
+
+" ============================================================================
+" ============================================================================
+"" IDE Setup for Various Programming Languages
+" ============================================================================
+" ============================================================================
+
+
+" Settings for vim-powerline
+set laststatus=2
+
+
+" Settings for ctrlp
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
+
+
+" Python folding
+" mkdir -p ~/.vim/ftplugin
+" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
+set nofoldenable                           " disable folding
+
+
+"=============================================================================
+"" Programming in C/C++
+"=============================================================================
+
+
+function! FT_C()
+  if v:version >= 600
+    setlocal formatoptions=croql
+    setlocal cindent
+    setlocal comments=sr:/*,mb:*,el:*/,://
+    setlocal shiftwidth=4
+    if v:version >= 704
+      setlocal fo+=j " remove comment leader when joining lines
+    endif
+  else
+    set formatoptions=croql
+    set cindent
+    set comments=sr:/*,mb:*,el:*/,://
+    set shiftwidth=4
+  endif
+endf
+
+augroup C_prog
+  autocmd!
+  autocmd FileType c,cpp        call FT_C()
+  autocmd BufRead,BufNewFile /home/mg/src/brogue-*/**/*.[ch]  setlocal ts=4
+augroup END
+
+
+"=============================================================================
+" Programming in Java
+" ============================================================================
+
+
+function! FT_Java()
+  if v:version >= 600
+    setlocal formatoptions=croql
+    setlocal cindent
+    setlocal comments=sr:/*,mb:*,el:*/,://
+    setlocal shiftwidth=4
+    "setlocal efm=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+    if v:version >= 704
+      setlocal fo+=j " remove comment leader when joining lines
+    endif
+  else
+    set formatoptions=croql
+    set cindent
+    set comments=sr:/*,mb:*,el:*/,://
+    set shiftwidth=4
+    "set efm=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+  endif
+endf
+
+augroup Java_prog
+  autocmd!
+  autocmd FileType java         call FT_Java()
+augroup END
+
+
+" ============================================================================
+" Programming in Perl
+" ============================================================================
+
+
+function! FT_Perl()
+  if v:version >= 600
+    setlocal formatoptions=croql
+""  setlocal smartindent
+    setlocal shiftwidth=4
+    if v:version >= 704
+      setlocal fo+=j " remove comment leader when joining lines
+    endif
+  else
+    set formatoptions=croql
+""  set smartindent
+    set shiftwidth=4
+  endif
+
+  " <S-F9> = check syntax
+  map  <buffer> <S-F9>  :!perl -c %<CR>
+  imap <buffer> <S-F9>  <C-O><S-F9>
+endf
+
+augroup Perl_prog
+  autocmd!
+  autocmd FileType perl         call FT_Perl()
+augroup END
