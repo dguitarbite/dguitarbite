@@ -11,7 +11,7 @@
 
 import subprocess
 import sys
-import urllib.request
+# import urllib.request
 import yaml
 
 home_dir = sys.argv[1]
