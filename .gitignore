@@ -16,7 +16,7 @@
 !.gitconfig
 
 # Ignore .ropeproject
-.ropeproject/*
+*.ropeproject/*
 
 # Do not ignore the following folders
 
