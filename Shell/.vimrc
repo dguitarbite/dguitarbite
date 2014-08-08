@@ -294,7 +294,7 @@ set number  " show line numbers
 set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-let &colorcolumn="80,".join(range(120,121),",").join(range(123,999),",")
+let &colorcolumn="70,80,120,".join(range(123,999),",")
 highlight ColorColumn ctermbg=233
 
 
