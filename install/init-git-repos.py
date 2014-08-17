@@ -9,9 +9,10 @@
 # As the information is recieved, this program will then call git to create
 # submodules and apply them as required.
 
+import json
 import subprocess
 import sys
-# import urllib.request
+import urllib.request
 import yaml
 
 home_dir = sys.argv[1]
@@ -32,7 +33,7 @@ def init_git_repo(repo_location, repo_remote_url, remote_name):
         print(init_output)
 
     except Exception:
-        print("Error!")
+        print("Error! Initializing Git Repository" + repo_location)
 
     try:
         git_remote_cmd = 'git remote add ' + remote_name + ' ' + \
@@ -44,19 +45,44 @@ def init_git_repo(repo_location, repo_remote_url, remote_name):
         remote_output = add_remote.communicate()[0]
 
     except Exception:
-        print("Error!")
+        print("Error! Adding git remote" + repo_location)
 
     try:
         git_fetch = 'git fetch ' + remote_name
-        print('Update the git repositories')
+        print('Fetching the repository contents')
         fetch_repo = subprocess.Popen(git_fetch.split(),
-                                      cwf=repo_location,
+                                      cwd=repo_location,
                                       stdout=subprocess.PIPE)
         remote_output = fetch_repo.communicate()[0]
         print(remote_output)
 
     except Exception:
-        print("Error!")
+        print("Error! Trying to getch git remote" + repo_location)
+
+    try:
+        git_fetch = 'git pull -u ' + remote_name
+        print('Setup Upstream and pull the master branch')
+        fetch_repo = subprocess.Popen(git_fetch.split(),
+                                      cwd=repo_location,
+                                      stdout=subprocess.PIPE)
+        remote_output = fetch_repo.communicate()[0]
+        print(remote_output)
+
+    except Exception:
+        print("Error! Could not set the remote and pull code")
+
+
+def clone_github_repo(org_location, repo_url, remote_name):
+    '''Fetch the github repositories URL from Github API'''
+
+    github_response = urllib.request.urlopen(repo_url)
+    repositories = bytes.decode(github_response.read(), 'ascii', 'ignore')
+    repositories = json.loads(repositories)
+
+    for repo_info in repositories:
+        repo_location = org_location + repo_info['name'] + '/'
+        repo_remote_url = repo_info['git_url']
+        init_git_repo(repo_location, repo_remote_url, remote_name)
 
 
 def setup_openstack_repositories():
@@ -80,15 +106,6 @@ def setup_openstack_repositories():
             repo_name = '/' + repo['repo']
             repo_url = 'git://git.openstack.org' + repo_name
 
-            '''
-            git_submodule_cmd = 'git submodule add -f ' + repo_url + \
-                    ' Repos/OpenStack/' + project.replace(' ', '_') + \
-                    repo_name.replace('/openstack/', '/')
-            submodule_add = subprocess.Popen(git_submodule_cmd.split(), \
-                    stdout=subprocess.PIPE)
-            output = submodule_add.communicate()[0]
-            '''
-
             repo_location = home_dir + '/Repositories/Dev/OpenStack/' + \
                 project.replace(' ', '_') + \
                 repo_name.replace('/openstack/', '/')
@@ -102,8 +119,9 @@ def setup_openSUSE_repositories():
     '''
 
     openSUSE_repo_url = 'https://api.github.com/orgs/openSUSE/repos'
-    f = urllib.request.urlopen(openSUSE_repo_url)
-    print(f.read())
+    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    remote_name = 'github'
+    clone_github_repo(repo_location, openSUSE_repo_url, remote_name)
 
 
 def setup_SUSE_repositories():
@@ -112,9 +130,9 @@ def setup_SUSE_repositories():
     '''
 
     SUSE_repo_url = 'https://api.github.com/orgs/SUSE/repos'
-    SUSE_repo_info = urllib.request.urlopen(SUSE_repo_url)
-    SUSE_repo_info = SUSE_repo_info.read()
-
+    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    remote_name = 'github'
+    clone_github_repo(repo_location, SUSE_repo_url, remote_name)
 
 
 def setup_susestudio_repositories():
@@ -123,8 +141,9 @@ def setup_susestudio_repositories():
     '''
 
     susestudio_repo_url = 'https://api.github.com/orgs/susestudio/repos'
-    f = urllib.request.urlopen(susestudio_repo_url)
-    print(f.read())
+    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    remote_name = 'github'
+    clone_github_repo(repo_location, susestudio_repo_url, remote_name)
 
 
 def setup_SUSE_Cloud_repositories():
@@ -133,8 +152,9 @@ def setup_SUSE_Cloud_repositories():
     '''
 
     SUSE_Cloud_repo_url = 'https://api.github.com/orgs/SUSE-Cloud/repos'
-    f = urllib.request.urlopen(SUSE_Cloud_repo_url)
-    print(f.read())
+    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    remote_name = 'github'
+    clone_github_repo(repo_location, SUSE_Cloud_repo_url, remote_name)
 
 
 def setup_openSUSE_Team():
@@ -143,12 +163,14 @@ def setup_openSUSE_Team():
     '''
 
     openSUSE_team_repo_url = 'https://api.github.com/orgs/openSUSE/repos'
-    f = urllib.request.urlopen(openSUSE_team_repo_url)
-    print(f.read())
+    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    remote_name = 'github'
+    clone_github_repo(repo_location, openSUSE_team_repo_url, remote_name)
+
 
 setup_openstack_repositories()
-# setup_openSUSE_Team()
-# setup_SUSE_repositories()
-# setup_susestudio_repositories()
-# setup_SUSE_Cloud_repositories()
-# setup_openSUSE_Team()
+setup_openSUSE_Team()
+setup_SUSE_repositories()
+setup_susestudio_repositories()
+setup_SUSE_Cloud_repositories()
+setup_openSUSE_Team()
