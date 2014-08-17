@@ -250,6 +250,7 @@ set statusline+=%h              " - [Help] if this is a help buffer
 set statusline+=%m              " - [+] if modified, [-] if not modifiable
 set statusline+=%r              " - [RO] if readonly
 set statusline+=\               " - a space
+set statusline+=%{fugitive#statusline()} " Add Vim Fugutive in the status line
 set statusline+=\               " - a space
 set statusline+=%=              " - right-align the rest
 set statusline+=%-10.(%l,%c%V%) " - line,column[-virtual column]
