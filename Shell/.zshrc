@@ -81,9 +81,12 @@ alias mvncgs='echo "running:: maven clean generate-sources";mvn clean generate-s
 # Git shit
 alias gcommit='git commit -a'
 alias greview='git review' # Gerrit
+alias greviewf='git review -f'
+alias greviewd='git review -d'
+alias greviewl='git review --list'
 alias gclone='git clone'
 alias gamend='git commit -a --amend'
-alias gpullom='git pull origin master'
+alias gpull='git pull'
 alias gcheckout='git checkout'
 alias gcheckoutb='git checkout -b'
 
