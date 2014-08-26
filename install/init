@@ -19,4 +19,4 @@ wget http://git.openstack.org/cgit/openstack/governance/plain/reference/programs
 # programs.yaml
 python $base_dir/install/init-git-repos.py $target
 
-rm -rf $base_dir/programs.yaml
+rm $base_dir/programs.yaml
