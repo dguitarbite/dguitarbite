@@ -60,9 +60,9 @@ def init_git_repo(repo_location, repo_remote_url, remote_name):
         print("Error! Trying to getch git remote" + repo_location)
 
     try:
-        git_fetch = 'git pull -u ' + remote_name
+        git_pull = 'git pull -u ' + remote_name + ' master'
         print('Setup Upstream and pull the master branch')
-        fetch_repo = subprocess.Popen(git_fetch.split(),
+        fetch_repo = subprocess.Popen(git_pull.split(),
                                       cwd=repo_location,
                                       stdout=subprocess.PIPE)
         remote_output = fetch_repo.communicate()[0]
@@ -130,7 +130,7 @@ def setup_SUSE_repositories():
     '''
 
     SUSE_repo_url = 'https://api.github.com/orgs/SUSE/repos'
-    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    repo_location = home_dir + '/Repositories/Dev/SUSE/'
     remote_name = 'github'
     clone_github_repo(repo_location, SUSE_repo_url, remote_name)
 
@@ -141,7 +141,7 @@ def setup_susestudio_repositories():
     '''
 
     susestudio_repo_url = 'https://api.github.com/orgs/susestudio/repos'
-    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    repo_location = home_dir + '/Repositories/Dev/susestudio/'
     remote_name = 'github'
     clone_github_repo(repo_location, susestudio_repo_url, remote_name)
 
@@ -152,7 +152,7 @@ def setup_SUSE_Cloud_repositories():
     '''
 
     SUSE_Cloud_repo_url = 'https://api.github.com/orgs/SUSE-Cloud/repos'
-    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    repo_location = home_dir + '/Repositories/Dev/SUSE-Cloud/'
     remote_name = 'github'
     clone_github_repo(repo_location, SUSE_Cloud_repo_url, remote_name)
 
@@ -162,13 +162,13 @@ def setup_openSUSE_Team():
     URL: https://github.com/openSUSE-Team
     '''
 
-    openSUSE_team_repo_url = 'https://api.github.com/orgs/openSUSE/repos'
-    repo_location = home_dir + '/Repositories/Dev/openSUSE/'
+    openSUSE_team_repo_url = 'https://api.github.com/orgs/openSUSE-Team/repos'
+    repo_location = home_dir + '/Repositories/Dev/openSUSE-Team/'
     remote_name = 'github'
     clone_github_repo(repo_location, openSUSE_team_repo_url, remote_name)
 
 
-setup_openstack_repositories()
+#setup_openstack_repositories()
 setup_openSUSE_Team()
 setup_SUSE_repositories()
 setup_susestudio_repositories()
