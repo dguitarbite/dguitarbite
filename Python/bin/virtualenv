@@ -1,0 +1,8 @@
+#!/bin/bash
+script=$(readlink -f -- "$1")
+case "$script" in (/home/dguitarbite/Repositories/*)
+    exec virtualenv-2.7 "$@"
+    ;;
+esac
+
+exec virtualenv "$@"
