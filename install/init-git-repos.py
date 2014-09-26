@@ -168,7 +168,7 @@ def setup_openSUSE_Team():
     clone_github_repo(repo_location, openSUSE_team_repo_url, remote_name)
 
 
-#setup_openstack_repositories()
+setup_openstack_repositories()
 setup_openSUSE_Team()
 setup_SUSE_repositories()
 setup_susestudio_repositories()
