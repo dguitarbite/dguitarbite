@@ -1,5 +1,5 @@
 ./configure \
- --enable-perlinterp \
+    --enable-perlinterp \
     --enable-pythoninterp \
     --enable-rubyinterp \
     --enable-perlinterp \
