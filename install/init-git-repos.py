@@ -60,8 +60,21 @@ def init_git_repo(repo_location, repo_remote_url, remote_name):
         print("Error! Trying to getch git remote" + repo_location)
 
     try:
-        git_pull = 'git pull -u ' + remote_name + ' master'
-        print('Setup Upstream and pull the master branch')
+        git_set_remote = 'git branch --set-upstream-to ' + remote_name + '/master'
+        print('Setup Upstream repository location to given remote location')
+        fetch_repo = subprocess.Popen(git_set_remote.split(),
+                                      cwd=repo_location,
+                                      stdout=subprocess.PIPE)
+        remote_output = fetch_repo.communicate()[0]
+        print(remote_output)
+
+    except Exception:
+        print("Error! Could not set the remote")
+
+
+    try:
+        git_pull = 'git pull'
+        print('pull the master branch')
         fetch_repo = subprocess.Popen(git_pull.split(),
                                       cwd=repo_location,
                                       stdout=subprocess.PIPE)
