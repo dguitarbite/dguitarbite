@@ -26,9 +26,6 @@ call vundle#begin()         " Start Vundle Plugin Configuration
     Plugin 'rodjek/vim-puppet'
 
     " TODO: Fill me !!!
-    Plugin 'tpope/vim-fugitive'
-
-    " TODO: Fill me !!!
     Plugin 'terryma/vim-multiple-cursors'
 
     " Install Syntastic https://github.com/scrooloose/syntastic
