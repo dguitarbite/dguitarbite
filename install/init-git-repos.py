@@ -87,17 +87,33 @@ def clone_github_orgs(github_org_urls):
     remote_name = 'github'
     dev_dir = home_dir + '/Repositories/Dev/'
 
-    def mine_urls(url_string):
+    def mine_urls(url_string, repo_org_url):
 
-        org_links = url_string.split(',')
-        repo_url = org_links[0].split(';')[0]
-        repo_url = repo_url.replace('<', '').replace('>', '')
-        repo_url = repo_url[:-1]
-        last_page = org_links[1].split(';')[0]
-        last_page = last_page.replace('<', '').replace('>', '')
-        last_page = last_page[-1]
+        try:
+            org_links = url_string.split(',')
+            repo_url = org_links[0].split(';')[0]
+            repo_url = repo_url.replace('<', '').replace('>', '')
+            repo_url = repo_url[:-1]
+            last_page = org_links[1].split(';')[0]
+            last_page = last_page.replace('<', '').replace('>', '')
+            last_page = last_page[-1]
+
+        except Exception:
+            repo_url = repo_org_url
+            last_page = ''
 
         return repo_url, last_page
+
+    def clone_orgs(repo_url):
+        github_response = urllib.request.urlopen(repo_url)
+        repositories = bytes.decode(github_response.read(), 'ascii',
+                                    'ignore')
+        repositories = json.loads(repositories)
+
+        for repo_info in repositories:
+            repo_location = org_location + repo_info['name'] + '/'
+            repo_remote_url = repo_info['git_url']
+            init_git_repo(repo_location, repo_remote_url, remote_name)
 
     for github_org_url in github_org_urls:
 
@@ -105,23 +121,18 @@ def clone_github_orgs(github_org_urls):
         github_response = urllib.request.urlopen(github_org_url[1])
         get_github_header = github_response.info()
         org_links = get_github_header.get('Link')
-        base_repo_url, last_page = mine_urls(org_links)
-        last_page = int(last_page)
+        base_repo_url, last_page = mine_urls(org_links, github_org_url[1])
 
-        for page_no in range(1, last_page + 1):
+        try:
+            last_page = int(last_page)
 
-            repo_url = base_repo_url + str(page_no)
-            print(repo_url)
-            github_response = urllib.request.urlopen(repo_url)
-            repositories = bytes.decode(github_response.read(), 'ascii',
-                                        'ignore')
-            repositories = json.loads(repositories)
+            for page_no in range(1, last_page + 1):
 
-            for repo_info in repositories:
-                repo_location = org_location + repo_info['name'] + '/'
-                repo_remote_url = repo_info['git_url']
-                init_git_repo(repo_location, repo_remote_url, remote_name)
+                repo_url = base_repo_url + str(page_no)
+                clone_orgs(repo_url)
 
+        except Exception:
+            clone_orgs(base_repo_url)
 
 def setup_openstack_repos():
     '''Clone and Setup OpenStack Repositories.'''
