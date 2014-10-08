@@ -156,7 +156,7 @@ cmap w!! %!sudo tee >/dev/null %
 
 " Mouse and backspace
 set mouse=a
-
+set backspace=2 " make backspace work like most other apps
 
 " Rebind <Leader> key
 let mapleader = ","
