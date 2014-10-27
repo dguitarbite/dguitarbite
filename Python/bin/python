@@ -1,6 +1,6 @@
 #!/bin/bash
 script=$(readlink -f -- "$1")
-case "$script" in (/home/dguitarbite/Repositories/*)
+case "$script" in (${HOME}/*)
     exec python2 "$@"
     ;;
 esac
