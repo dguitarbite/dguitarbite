@@ -193,19 +193,22 @@ myDzenPP h = defaultPP
 
 -- Key Bindings
 myKeys = [ ("M-u",  spawnHere myBrowser)
+
+         -- dmenu
+         , ("M-s",  spawnHere "dmenu_run")
          -- run
          , ("M-r",  submap . M.fromList $
             [ ((0, xK_i),  spawnHere "/opt/idea/bin/idea.sh")
-            , ((0, xK_c),  spawnHere "google-chrome")
+            , ((0, xK_c),  spawnHere "chromium")
             ])
 
          -- web apps
          , ("M-a",  submap . M.fromList $
-            [ ((0, xK_p),  spawnHere "google-chrome http://plus.google.com")
-            , ((0, xK_f),  spawnHere "google-chrome http://facebook.com")
-            , ((0, xK_t),  spawnHere "google-chrome http://www.toodledo.com/tasks/index.php")
-            , ((0, xK_g),  spawnHere "google-chrome http://gmail.com")
-            , ((0, xK_m),  spawnHere "google-chrome http://mint.com")
+            [ ((0, xK_p),  spawnHere "chromium http://plus.google.com")
+            , ((0, xK_f),  spawnHere "chromium http://facebook.com")
+            , ((0, xK_t),  spawnHere "chromium http://www.toodledo.com/tasks/index.php")
+            , ((0, xK_g),  spawnHere "chromium http://gmail.com")
+            , ((0, xK_m),  spawnHere "chromium http://mint.com")
             ])
 
          -- bookmarks
@@ -213,7 +216,6 @@ myKeys = [ ("M-u",  spawnHere myBrowser)
             [ ((0, xK_r),    spawnHere "uzbl-browser reddit.com")
             ])
          -- searches
-         , ("M-s",         promptSearchBrowser myXPConfig myBrowser google)
          , ("M-S-s",      submap . M.fromList $
             [ ((0, xK_a),    promptSearchBrowser myXPConfig myBrowser amazon)
             , ((0, xK_c),    promptSearchBrowser myXPConfig myBrowser codesearch)
@@ -221,6 +223,7 @@ myKeys = [ ("M-u",  spawnHere myBrowser)
             , ((0, xK_g),    promptSearchBrowser myXPConfig myBrowser google)
             , ((0, xK_i),    promptSearchBrowser myXPConfig myBrowser imdb)
             , ((0, xK_m),    promptSearchBrowser myXPConfig myBrowser maps)
+            , ((0, xK_s),    promptSearchBrowser myXPConfig myBrowser google)
             , ((0, xK_t),    promptSearchBrowser myXPConfig myBrowser thesaurus)
             , ((0, xK_y),    promptSearchBrowser myXPConfig myBrowser youtube)
             ])
