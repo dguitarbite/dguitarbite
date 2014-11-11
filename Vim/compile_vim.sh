@@ -13,5 +13,7 @@
     --with-x \
     --with-compiledby="dguitarbite" \
     --with-python-config-dir=/usr/lib64/python2.7/config/ \
-    --with-features=huge
- #   --with-lua-prefix=/usr/bin/lua
+    --with-features=huge \
+    --with-lua-prefix=/usr/bin/lua
+
+

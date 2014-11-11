@@ -22,6 +22,9 @@ call vundle#begin()         " Start Vundle Plugin Configuration
     " let Vundle manage Vundle
     Plugin 'gmarik/Vundle.vim'
 
+    " Auto-Complete -- https://github.com/Valloric/YouCompleteMe (used by ultisnips)
+    Plugin 'Valloric/YouCompleteMe'
+
     " Install Puppet Modules for Vim - https://github.com/rodjek/vim-puppet
     Plugin 'rodjek/vim-puppet'
 
@@ -51,9 +54,6 @@ call vundle#begin()         " Start Vundle Plugin Configuration
 
     " More Pythonic Snippet https://github.com/SirVer/ultisnips
     Plugin 'SirVer/ultisnips'
-
-    " Auto-Complete -- https://github.com/Valloric/YouCompleteMe (used by ultisnips)
-    Plugin 'Valloric/YouCompleteMe'
 
     " Neo Complete https://github.com/Shougo/neocomplete.vim
     Plugin 'Shougo/neocomplete'
