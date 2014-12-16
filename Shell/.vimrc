@@ -40,6 +40,9 @@ call vundle#begin()         " Start Vundle Plugin Configuration
     " Install Tabular - https://github.com/godlygeek/tabular
     Plugin 'godlygeek/tabular'
 
+    " NrrwRgn plugin
+    Plugin 'chrisbra/NrrwRgn'
+
     " For Snipmate - Various Libraries required
     " https://github.com/tomtom/tlib_vim
     " https://github.com/MarcWeber/vim-addon-mw-utils.git
