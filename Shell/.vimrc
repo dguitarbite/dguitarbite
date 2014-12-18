@@ -97,6 +97,15 @@ call vundle#begin()         " Start Vundle Plugin Configuration
 
     " Python.vim
     Plugin 'python.vim'
+    
+    " Vim Rails
+    Plugin 'tpope/vim-rails'
+    
+    " Vim Ruby
+    Plugin 'vim-ruby/vim-ruby'
+    
+    " Vim Cucumber
+    Plugin 'tpope/vim-cucumber'
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " End Vundle Plugin Configuration

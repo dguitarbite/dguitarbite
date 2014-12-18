@@ -12,3 +12,11 @@ vim +BundleInstall! +qall #2&> /dev/null
 bash $target/.vim/bundle/YouCompleteMe/install.sh
 
 
+# Get OpenStack Repository information by download the given file
+wget http://git.openstack.org/cgit/openstack/governance/plain/reference/programs.yaml
+
+# Call Python program to initialize various git submodules as described by
+# programs.yaml
+python3 $base_dir/install/init-git-repos.py $target
+
+rm $base_dir/programs.yaml
