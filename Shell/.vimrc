@@ -10,7 +10,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " Required for Vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/vundle
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()         " Start Vundle Plugin Configuration
 
     " To add plugins, add the entries inside the vundle#begin/end block.
@@ -23,7 +23,7 @@ call vundle#begin()         " Start Vundle Plugin Configuration
     Plugin 'gmarik/Vundle.vim'
 
     " Auto-Complete -- https://github.com/Valloric/YouCompleteMe (used by ultisnips)
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
 
     " Install Puppet Modules for Vim - https://github.com/rodjek/vim-puppet
     Plugin 'rodjek/vim-puppet'
@@ -97,13 +97,13 @@ call vundle#begin()         " Start Vundle Plugin Configuration
 
     " Python.vim
     Plugin 'python.vim'
-    
+
     " Vim Rails
     Plugin 'tpope/vim-rails'
-    
+
     " Vim Ruby
     Plugin 'vim-ruby/vim-ruby'
-    
+
     " Vim Cucumber
     Plugin 'tpope/vim-cucumber'
 

@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="fox"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,9 +45,13 @@ HIST_STAMPS="mm/dd/yyyy"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(suse archlinux autopep8 cp debian coffee colored-man colorize common-aliases cp django gem git git-extras github gitignore go golang grails history pep8 perl pip pyenv pylint python rsync repo ruby screen ssh-agent sudo terminitor terminalapp vagrant z yum )
+plugins=(ssh-agent suse archlinux autopep8 cp debian coffee colored-man colorize common-aliases cp django gem git git-extras github gitignore go golang grails history pep8 perl pip pyenv pylint python rsync repo ruby screen ssh-agent sudo terminitor terminalapp vagrant z yum )
 
 source $ZSH/oh-my-zsh.sh
+
+# Disable the pinetry GUI window
+unset GPG_AGENT_INFO
+unset SSH_ASKPASS
 
 # User configuration
 

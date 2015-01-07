@@ -46,6 +46,9 @@ bindsym $mod+d exec dmenu_run
 # Network Manager Applet --
 exec --no-startup-id nm-applet
 
+# Add ssh-keys
+exec --no-startup-id ssh-add
+
 # Take a screenshot upon pressing Print Screen (select an area)
 bindsym --release Print exec --no-startup-id import /tmp/latest-screenshot.png
 
